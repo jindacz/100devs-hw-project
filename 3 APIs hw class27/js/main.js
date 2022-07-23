@@ -1,23 +1,9 @@
-//Dog Stuff
-
 document.querySelector('button').addEventListener('click', getFetchDogFacts)
 
-function getFetchDogFacts(){
+function getFetchDogFacts() {
   let dogCode = document.querySelector('#dogCode').value
   const url = `https://http.dog/${dogCode}.jpg`
-  document.querySelector('#dogImage').src= url;
-
-  // fetch(url)
-  //     .then(res => res.json()) // parse response as JSON
-  //     .then(data => {
-  //       console.log(data)
-
-  //     })
-  //     .catch(err => {
-  //         console.log(`error ${err}`)
-  //         alert('Wrong number please re-enter 101,102, 201, 202, etc');
-  //         document.querySelector('#choice').value = "";
-  //     });
+  document.querySelector('#dogImage').src = url
 }
 
 //Example fetch using pokemonapi.co
@@ -27,8 +13,8 @@ document.querySelector('#getPokemon').addEventListener('click', getPokemon)
 function getPokemon() {
   const choice = document.querySelector('#choice').value
   const url = 'https://pokeapi.co/api/v2/pokemon/' + choice
- 
-  if (url != 'https://pokeapi.co/api/v2/pokemon/'){
+
+  if (url != 'https://pokeapi.co/api/v2/pokemon/') {
     fetch(url)
       .then(res => res.json()) // parse response as JSON
       .then(data => {
@@ -38,12 +24,12 @@ function getPokemon() {
       .catch(err => {
         console.log(`error ${err}`)
         alert('Wrong name please re-enter');
-        document.querySelector('#choice').value="";
+        document.querySelector('#choice').value = "";
       });
-    }else alert('Enter Pokemon Name')
+  } else alert('Enter Pokemon Name')
 }
 
-function displayPokemon(data){
+function displayPokemon(data) {
   document.querySelector('#pokeName').innerHTML = data.name;
   document.querySelector('#pokeImgFront').src = data.sprites.front_default;
   document.querySelector('#pokeImgBack').src = data.sprites.back_default;
@@ -78,11 +64,11 @@ function getArt() {
     .then(res => res.json()) // parse response as JSON
     .then(data => {
       console.log(data)
-      if(data.records.length>0){
+      if (data.records.length > 0) {
         listArt(data);
-      }else {
+      } else {
         alert('invalid number');
-        document.querySelector('#artID').value=''
+        document.querySelector('#artID').value = ''
       }
     })
     .catch(err => {
@@ -91,11 +77,11 @@ function getArt() {
 }
 
 
-function listArt(data){
+function listArt(data) {
   document.querySelector('h2.artName').innerHTML = data.records[0].title;
   document.querySelector('img.artImg').src = data.records[0].primaryimageurl;
-  document.querySelector('h3.artist').innerHTML = data.records[0].people[0].name + " " + data.records[0].people[0].displaydate+"<br>Provenance:"+data.records[0].provenance;
-    
+  document.querySelector('h3.artist').innerHTML = data.records[0].people[0].name + " " + data.records[0].people[0].displaydate + "<br>Provenance:" + data.records[0].provenance;
+
 }
 
 

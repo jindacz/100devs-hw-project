@@ -5,22 +5,18 @@ const cors = require('cors')
 
 app.use(cors())
 
-const tea = {
-    'oolong':{
-        'type': 'black',
-        'origin': 'test',
-        'waterTemp':200,
-        'caffineLevel':180,
-        'caffinated': true,
-        'flavor': 'delicious'
+const fruit = {
+    'apple':{
+        'color': 'red',
+        'size': 'small',
+        'flavor': 'good',
+        'touch': 'hard'
     },
-    'green':{
-        'type': 'green',
-        'origin': 'test',
-        'waterTemp':200,
-        'caffineLevel':180,
-        'caffinated': false,
-        'flavor': 'delicious'
+    'banana':{
+        'color': 'yellow',
+        'size': 'medium',
+        'flavor': 'good',
+        'touch': 'soft'
     },
     'unknown':{
         'type': 'unknown',
@@ -37,13 +33,13 @@ app.get('/', (req, rep) => {
 })
 
 app.get('/api/:name', (request, response) => {
-    const teaName = request.params.name.toLowerCase()
-    if (tea[teaName]) {
-        response.json(tea[teaName])
+    const fruitName = request.params.name.toLowerCase()
+    if (fruit[fruitName]) {
+        response.json(fruit[fruitName])
     }else{
-        response.json(tea['unknown'])
+        response.json(fruit['unknown'])
     }
-    response.json(tea)
+    response.json(fruit)
 })
 
 
